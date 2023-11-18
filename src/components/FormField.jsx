@@ -4,6 +4,7 @@ export default function FormField({
     placeholder,
     type,
     options,
+    setFormData,
 }) {
     
     const styles = `rounded py-1 px-4
@@ -17,11 +18,19 @@ export default function FormField({
         className: styles
     }
 
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+
     const renderInput = () => {
         switch(type){
             case('select'):
                 return (
-                    <select {...parameters}>
+                    <select {...parameters} onChange={handleChange}>
                         {options.map(option => (
                             <option
                                 key={option.value}
@@ -31,15 +40,15 @@ export default function FormField({
                     </select>
                 )
             case('textarea'):
-                return <textarea {...parameters} />
+                return <textarea {...parameters} onChange={handleChange} />
             case('text'):
             default:
-                return <input {...parameters} />
+                return <input {...parameters} onChange={handleChange} />
         }
     }
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
             <label htmlFor={name}>{label}</label>
             {renderInput()}
         </div>
