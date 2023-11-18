@@ -13,7 +13,7 @@ export default function List() {
     },[])
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-9/10 mx-12">
             {tasks.map( task => (
                 <Item
                     key={task.id}

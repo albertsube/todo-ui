@@ -8,11 +8,4 @@
   text-align: center;
 
   font-family: 'Mali', cursive;
-
-  display: grid;
-  grid-template-columns: 400px 1fr;
-}
-
-h1 {
-  grid-column: 1/-1;
 }
