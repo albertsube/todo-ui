@@ -2,10 +2,12 @@ import { useState } from 'react'
 import Form from './components/Form'
 import List from './components/List'
 import Button from './components/Button'
+import Filters from './components/Filters'
 
 function App() {
 
   const [showForm, setShowForm] = useState(false)
+  const [filters, setFilters] = useState('')
 
   return (
     <div>
@@ -14,7 +16,9 @@ function App() {
 
       {showForm &&
         <>
-          <Form />
+          <Form
+            hide={() => setShowForm(false)}
+          />
         </>
       }
 
@@ -23,8 +27,14 @@ function App() {
         handleClick={() => setShowForm(prev => !prev)}
       />
 
-      <main>
-        <List />
+      <main className='flex flex-col items-center'>
+        <Filters
+          filters={filters}
+          setFilters={setFilters}
+        />
+        <List
+          filters={filters}
+        />
       </main>
 
 

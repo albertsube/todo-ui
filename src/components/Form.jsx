@@ -2,7 +2,7 @@ import FormField from "./FormField";
 import formConfig from '../data/form.data'
 import { useState } from "react";
 
-export default function Form() {
+export default function Form({hide}) {
 
 	const [formData, setFormData] = useState({})
 
@@ -17,8 +17,9 @@ export default function Form() {
 				},
 			})
 			.then(response => response.json())
-			.then(data => console.log(data))
-			.catch(error => console.log(error))
+			.then(hide())
+			.catch(error => console.log('ERROR!!!',error))
+
 	}
 
 
@@ -27,7 +28,8 @@ export default function Form() {
 			<form
 				className="flex flex-col items-center gap-3
 					bg-slate-300 rounded-lg
-					p-8 w-80 fixed top-1/3 left-1/3
+					p-8 w-80 fixed top-1/2 left-1/2
+					-translate-x-1/2 -translate-y-1/2
 					shadow-lg z-10"
 				onSubmit={handleSubmit}
 			>

@@ -1,22 +1,18 @@
 import { useState } from "react";
 import Item from "./Item";
 import { useEffect } from "react";
+import { useTasks } from "../hooks/tasks";
 
-export default function List() {
+export default function List({filters}) {
 
-    const [tasks, setTasks] = useState([])
-
-    useEffect( () => {
-        fetch('http://localhost:3000/tasks')
-            .then(response => response.json())
-            .then(data => setTasks(data))
-    },[])
+    const {tasks} = useTasks('http://localhost:3000/tasks')
+    const filteredTaks = filters ? tasks.filter(task => task.status === filters) : tasks
 
     return (
         <div className="flex flex-col gap-4 w-9/10 mx-12">
-            {tasks.map( task => (
+            {filteredTaks.map( task => (
                 <Item
-                    key={task.id}
+                    key={task._id}
                     {...task}
                 />
             ))}
