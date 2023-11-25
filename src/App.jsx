@@ -8,6 +8,7 @@ function App() {
 
   const [showForm, setShowForm] = useState(false)
   const [filters, setFilters] = useState('')
+	const [formData, setFormData] = useState({})
 
   return (
     <div>
@@ -18,6 +19,8 @@ function App() {
         <>
           <Form
             hide={() => setShowForm(false)}
+            formData={formData}
+            setFormData={setFormData}
           />
         </>
       }
@@ -34,6 +37,8 @@ function App() {
         />
         <List
           filters={filters}
+          show={() => setShowForm(true)}
+          setFormData={setFormData}
         />
       </main>
 

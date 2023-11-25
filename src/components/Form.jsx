@@ -2,24 +2,21 @@ import FormField from "./FormField";
 import formConfig from '../data/form.data'
 import { useState } from "react";
 
-export default function Form({hide}) {
-
-	const [formData, setFormData] = useState({})
+export default function Form({hide, formData, setFormData}) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
         fetch('http://localhost:3000/tasks', {
-				method: 'POST',
-				body: JSON.stringify(formData),
-				headers: {
-					"Content-type": "application/json;charset=UTF-8"
-				},
-			})
-			.then(response => response.json())
-			.then(hide())
-			.catch(error => console.log('ERROR!!!',error))
-
+			method: 'POST',
+			body: JSON.stringify(formData),
+			headers: {
+				"Content-type": "application/json;charset=UTF-8"
+			},
+		})
+		.then(response => response.json())
+		.then(hide())
+		.catch(error => console.log('Error creating task',error))
 	}
 
 
@@ -38,6 +35,7 @@ export default function Form({hide}) {
 					<FormField
 						key={i}
 						{...fieldConfig}
+						value={formData[fieldConfig.name]}
 						setFormData={setFormData}
 					/>
 				))}
