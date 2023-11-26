@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { status } from '../data/form.data'
 import FilterButton from './FilterButton'
+import TasksContext from '../context/TasksContext'
 
-export default function Filters({filters, setFilters}) {
+export default function Filters() {
+
+    const {filters, setFilters} = useContext(TasksContext)
 
     const filterConfig=[
         {

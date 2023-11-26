@@ -1,18 +1,13 @@
 import FormField from "../components/FormField";
+import FormDataContext from "../context/FormDataContext";
 import formConfig from '../data/form.data'
-import { useState } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom";
 
 
 export default function Form() {
-
-	const [formData, setFormData] = useState({
-		title: '',
-		description: '',
-		status: '',
-		datestart: '',
-		dateend: '',
-	})
+	
+	const {formData, setFormData} = useContext(FormDataContext)
 	const navigate = useNavigate()
 
 	const handleSubmit = (e) => {

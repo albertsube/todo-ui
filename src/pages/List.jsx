@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useContext } from "react"
 import Item from "../components/Item";
-import { useTasks } from "../hooks/useTasks";
 import Filters from '../components/Filters'
+import TasksContext from "../context/TasksContext";
 
 export default function List() {
 
-    const {tasks} = useTasks('http://localhost:3000/tasks')
-    const [filters, setFilters] = useState('')
+    const {tasks, filters} = useContext(TasksContext)
+
     const filteredTaks = filters ? tasks.filter(task => task.status === filters) : tasks
 
     return (
 
         <main className='flex flex-col items-center'>
-            <Filters
-                filters={filters}
-                setFilters={setFilters}
-            />
+
+            <Filters />
+
             <div className="flex flex-col gap-6 w-9/10 mx-12">
                 {filteredTaks.map( task => (
                     <Item
@@ -24,6 +23,7 @@ export default function List() {
                     />
                 ))}
             </div>
+            
       </main>
 
     )

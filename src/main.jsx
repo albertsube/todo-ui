@@ -10,6 +10,8 @@ import List from './pages/List.jsx'
 import Form from './pages/Form.jsx'
 import Page404 from './pages/Page404.jsx'
 import Login from './pages/Login.jsx'
+import { TasksProvider } from './context/TasksContext.jsx'
+import { FormDataProvider } from './context/FormDataContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <TasksProvider>
+      <FormDataProvider>
+        <RouterProvider router={router} />
+      </FormDataProvider>
+    </TasksProvider>
   </React.StrictMode>,
 )
