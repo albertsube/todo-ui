@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <Page404 />,
     children: [
       {
-        path: "/",
+        path: "/tasks/list",
         element: <List />,
       },
       {

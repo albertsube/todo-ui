@@ -20,7 +20,7 @@ export default function Form() {
 				"Content-type": "application/json;charset=UTF-8"
 			},
 		})
-		.then(navigate('/'))
+		.then(navigate('/tasks/list'))
 		.catch(error => console.log('Error creating task',error))
 	}
 
@@ -29,7 +29,7 @@ export default function Form() {
 		<>
 			<form
 				className="flex flex-col items-center gap-3
-					bg-slate-300 rounded-lg
+					bg-slate-100 rounded-lg
 					p-8 w-80 fixed top-1/2 left-1/2
 					-translate-x-1/2 -translate-y-1/2
 					shadow-lg z-10"
@@ -51,9 +51,6 @@ export default function Form() {
 
 			</form>
 
-			{/* <div
-				className='bg-slate-100 fixed inset-0 opacity-80'
-			></div> */}
 		</>
 	)
 }

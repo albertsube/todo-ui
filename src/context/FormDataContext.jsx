@@ -12,11 +12,15 @@ export function FormDataProvider({children}) {
         dateend: '',
     })
 
+    const [editId, setEditId] = useState('')
+
     return (
         <FormDataContext.Provider
             value={{
                 formData,
-                setFormData
+                setFormData,
+                editId,
+                setEditId
             }}
         >
             {children}

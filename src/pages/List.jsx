@@ -15,7 +15,7 @@ export default function List() {
 
             <Filters />
 
-            <div className="flex flex-col gap-6 w-9/10 mx-12">
+            <div className="flex flex-col gap-6 w-9/10 m-4">
                 {filteredTaks.map( task => (
                     <Item
                         key={task._id}
