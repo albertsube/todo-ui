@@ -7,7 +7,7 @@ export default function FormField({
     setFormData,
     value
 }) {
-    
+
     const styles = `rounded py-1 px-4
         ${type === 'textarea' && 'h-24'}`
 

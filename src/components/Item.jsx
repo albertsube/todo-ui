@@ -8,8 +8,6 @@ export default function Item({
     dateend,
     user,
     _id,
-    show,
-    setFormData
 }) {
 
     const statusColor = {
@@ -30,16 +28,16 @@ export default function Item({
 
     const editTask = () => {
         // TODO make task update instead of posting a new task
-        show()
-        setFormData({
-            title,
-            description,
-            status,
-            datestart,
-            dateend,
-            user,
-            _id
-        })
+        // show()
+        // setFormData({
+        //     title,
+        //     description,
+        //     status,
+        //     datestart,
+        //     dateend,
+        //     user,
+        //     _id
+        // })
     }
 
     const deleteTask = () => {
@@ -95,8 +93,8 @@ export default function Item({
             <div className="hidden group-hover:flex gap-1 absolute right-0 translate-x-3/2 -translate-y-1/2">
                 {buttonConfig.map((button, i) => (
                     <ItemButton
-                    key={i}
-                    {...button}
+                        key={i}
+                        {...button}
                     />
                 ))}
             </div>

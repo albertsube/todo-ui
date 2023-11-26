@@ -1,8 +1,19 @@
-import FormField from "./FormField";
+import FormField from "../components/FormField";
 import formConfig from '../data/form.data'
-import { useState } from "react";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
-export default function Form({hide, formData, setFormData}) {
+
+export default function Form() {
+
+	const [formData, setFormData] = useState({
+		title: '',
+		description: '',
+		status: '',
+		datestart: '',
+		dateend: '',
+	})
+	const navigate = useNavigate()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -14,8 +25,7 @@ export default function Form({hide, formData, setFormData}) {
 				"Content-type": "application/json;charset=UTF-8"
 			},
 		})
-		.then(response => response.json())
-		.then(hide())
+		.then(navigate('/'))
 		.catch(error => console.log('Error creating task',error))
 	}
 
@@ -46,9 +56,9 @@ export default function Form({hide, formData, setFormData}) {
 
 			</form>
 
-			<div
+			{/* <div
 				className='bg-slate-100 fixed inset-0 opacity-80'
-			></div>
+			></div> */}
 		</>
 	)
 }
