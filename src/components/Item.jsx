@@ -1,7 +1,7 @@
 import ItemButtons from "./ItemButtons"
-import FormDataContext from '../context/FormDataContext'
-import { useNavigate } from 'react-router-dom'
 import { useContext } from "react"
+import TasksContext from "../context/TasksContext"
+import { useNavigate } from 'react-router-dom'
 
 export default function Item({
     title,
@@ -13,42 +13,8 @@ export default function Item({
     _id,
 }) {
 
-    const {setFormData} = useContext(FormDataContext)
+    const {completeTask, editTask, deleteTask} = useContext(TasksContext)
     const navigate = useNavigate()
-  
-    const completeTask = () => {
-        fetch(`http://localhost:3000/tasks/${_id}`, {
-            method: 'PATCH',
-            headers: {
-                "Content-type": "application/json;charset=UTF-8"
-            },
-        })
-        .catch(error => console.log('Error completing task',error))
-    }
-  
-    const editTask = () => {
-        // TODO make task update instead of posting a new task
-        setFormData({
-            title,
-            description,
-            status,
-            datestart,
-            dateend,
-            user,
-            _id
-        })
-        navigate('/tasks/create')
-    }
-  
-    const deleteTask = () => {
-        fetch(`http://localhost:3000/tasks/${_id}`, {
-      method: 'DELETE',
-      headers: {
-        "Content-type": "application/json;charset=UTF-8"
-      },
-    })
-    .catch(error => console.log('Error completing task',error))
-    }
 
     const statusColor = {
         'PENDING': 'bg-red-100',
@@ -56,12 +22,17 @@ export default function Item({
         'COMPLETED': 'bg-green-100',
     }
 
+    const handleEdit = () => {
+        editTask(_id)
+        navigate('/tasks/create')
+    }
+
     return (
         <div className="grid grid-cols-3 bg-slate-100 p-6 rounded-md shadow-md relative group">
             <div>
                 <h3 className="font-bold text-lg">{title}</h3>
-                <p>{datestart}</p>
-                <p>{dateend}</p>
+                <p>{new Date(datestart).toLocaleDateString()}</p>
+                <p>{new Date(dateend).toLocaleDateString()}</p>
                 <p>{user}</p>
             </div>
             <div className="flex flex-col justify-between col-span-2">
@@ -70,9 +41,9 @@ export default function Item({
             </div>
 
             <ItemButtons
-                completeTask={completeTask}
-                editTask={editTask}
-                deleteTask={deleteTask}
+                completeTask={() => completeTask(_id)}
+                editTask={handleEdit}
+                deleteTask={() => deleteTask(_id)}
             />
 
         </div>
