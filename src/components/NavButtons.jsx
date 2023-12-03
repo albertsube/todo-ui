@@ -8,7 +8,6 @@ export default function NavButtons() {
         fixed bottom-8 right-8 cursor-pointer
         group hover:h-48 transition-all"
       >
-        {/* <p className="font-bold text-3xl text-white mb-1">+</p> */}
         <svg
           className="group-hover:hidden w-6 h-6"
           xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white">

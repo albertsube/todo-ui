@@ -12,12 +12,17 @@ import Page404 from './pages/Page404.jsx'
 import Login from './pages/Login.jsx'
 import { TasksProvider } from './context/TasksContext.jsx'
 import { FormDataProvider } from './context/FormDataContext.jsx'
+import App from './pages/App.jsx'
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     errorElement: <Page404 />,
     children: [
+      {
+        path: "/",
+        element: <App />,
+      },
       {
         path: "/tasks/list",
         element: <List />,
